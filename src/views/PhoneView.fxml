@@ -46,24 +46,13 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Manufacturer" />
-                        <Label text="Model" GridPane.rowIndex="1" />
-                        <Label text="SKU" GridPane.rowIndex="2" />
-                        <Label text="Price" GridPane.rowIndex="3" />
-                        <Label text="Quantity In Stock" GridPane.rowIndex="4" />
-                        <Label text="Year" GridPane.rowIndex="5" />
-                        <Label text="Colour" GridPane.rowIndex="6" />
-                        <Label text="CPU" GridPane.rowIndex="7" />
-                        <Label text="OS" GridPane.rowIndex="8" />
-                        <Label text="Front Camera Resolition" GridPane.rowIndex="9" />
-                        <Label text="Rear Camera Resolution" GridPane.rowIndex="10" />
+                        <ComboBox fx:id="manfacturerComboBox" maxWidth="150.0" prefWidth="150.0" GridPane.columnIndex="1" />
                         <TextField fx:id="modelTextField" maxWidth="150.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="skuTextField" maxWidth="150.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="priceTextField" maxWidth="150.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="skuTextField" maxWidth="150.0" prefWidth="150.0" promptText="SKU" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="priceTextField" maxWidth="150.0" prefWidth="150.0" promptText="ex 349.44" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Spinner fx:id="quantitySpinner" maxWidth="150.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Spinner fx:id="yearSpinner" maxWidth="150.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <ComboBox fx:id="colourComboBox" maxWidth="150.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <ComboBox fx:id="manfacturerComboBox" maxWidth="150.0" prefWidth="150.0" GridPane.columnIndex="1" />
                         <ComboBox fx:id="cpuComboBox" maxWidth="150.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                            <children>
@@ -78,6 +67,17 @@
                               <Label fx:id="frontCamLabel" text="Label" />
                            </children>
                         </HBox>
+                        <Label text="Manufacturer" />
+                        <Label text="Model" GridPane.rowIndex="1" />
+                        <Label text="SKU" GridPane.rowIndex="2" />
+                        <Label text="Price" GridPane.rowIndex="3" />
+                        <Label text="Quantity In Stock" GridPane.rowIndex="4" />
+                        <Label text="Year" GridPane.rowIndex="5" />
+                        <Label text="Colour" GridPane.rowIndex="6" />
+                        <Label text="CPU" GridPane.rowIndex="7" />
+                        <Label text="OS" GridPane.rowIndex="8" />
+                        <Label text="Front Camera Resolition" GridPane.rowIndex="9" />
+                        <Label text="Rear Camera Resolution" GridPane.rowIndex="10" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
                            <children>
                               <Slider fx:id="rearCamSlider" />

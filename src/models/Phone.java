@@ -92,6 +92,7 @@ public class Phone extends Product{
         return list;
     }
     
+   
     @Override
     public void setManufacturer(String manufacturer) {
         if (getManufacturers().contains(manufacturer))
