@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Product.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;W18COMP1011Feb1&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">models</a> &gt; <span class="el_source">Product.java</span></div><h1>Product.java</h1><pre class="source lang-java linenums">package models;
+
+/**
+ *
+ * @author JWright
+ */
+public class Product {
+    private String sku, productName, manufacturer;
+    private int quantityInStock;
+    private double price;
+    
+
+<span class="fc" id="L13">    public Product(String sku, String productName, String manufacturer, int quantityInStock, double price) {</span>
+<span class="fc" id="L14">        setSku(sku);</span>
+<span class="fc" id="L15">        setProductName(productName);</span>
+<span class="fc" id="L16">        setManufacturer(manufacturer);</span>
+<span class="fc" id="L17">        setQuantityInStock(quantityInStock);</span>
+<span class="fc" id="L18">        setPrice(price);</span>
+<span class="fc" id="L19">    }</span>
+
+    public String getManufacturer() {
+<span class="nc" id="L22">        return manufacturer;</span>
+    }
+
+    public void setManufacturer(String manufacturer) {
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        if (!manufacturer.isEmpty())</span>
+<span class="fc" id="L27">            this.manufacturer = manufacturer;</span>
+        else
+<span class="nc" id="L29">            throw new IllegalArgumentException(&quot;Manufacturer can not be empty&quot;);</span>
+<span class="fc" id="L30">    }</span>
+
+    public String getSku() {
+<span class="nc" id="L33">        return sku;</span>
+    }
+
+    public void setSku(String sku) {
+<span class="fc" id="L37">        this.sku = sku;</span>
+<span class="fc" id="L38">    }</span>
+
+    public String getProductName() {
+<span class="nc" id="L41">        return productName;</span>
+    }
+
+    public void setProductName(String productName) 
+    {
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        if (!productName.isEmpty())</span>
+<span class="fc" id="L47">            this.productName = productName;</span>
+        else
+<span class="nc" id="L49">            throw new IllegalArgumentException(&quot;Product name cannot be empty&quot;);</span>
+<span class="fc" id="L50">    }</span>
+
+    public int getQuantityInStock() {
+<span class="nc" id="L53">        return quantityInStock;</span>
+    }
+
+    public void setQuantityInStock(int quantityInStock) {
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">        if (quantityInStock &gt;= 0)</span>
+<span class="fc" id="L58">            this.quantityInStock = quantityInStock;</span>
+        else
+<span class="nc" id="L60">            throw new IllegalArgumentException(&quot;Stock values must be positive&quot;);</span>
+<span class="fc" id="L61">    }</span>
+
+    public double getPrice() {
+<span class="nc" id="L64">        return price;</span>
+    }
+
+    public void setPrice(double price) {
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">        if (price &gt;= 0)</span>
+<span class="fc" id="L69">            this.price = price;</span>
+        else
+<span class="nc" id="L71">            throw new IllegalArgumentException(&quot;Price must be greater than or equal to 0&quot;);</span>
+<span class="fc" id="L72">    }</span>
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -15,9 +15,10 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="views.PhoneViewController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.PhoneViewController">
     <stylesheets>
         <URL value="@product.css" />
     </stylesheets>
@@ -86,10 +87,14 @@
                         </HBox>
                      </children>
                   </GridPane>
-                  <VBox alignment="CENTER">
+                  <VBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <ImageView fx:id="phoneImageView" fitHeight="264.0" fitWidth="272.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button mnemonicParsing="false" text="Choose Image" />
+                        <StackPane>
+                           <children>
+                              <ImageView fx:id="phoneImageView" fitHeight="264.0" fitWidth="272.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </StackPane>
+                        <Button mnemonicParsing="false" onAction="#getNewImage" text="Choose Image" />
                      </children>
                   </VBox>
                </children>
