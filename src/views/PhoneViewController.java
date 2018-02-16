@@ -16,6 +16,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -46,6 +47,7 @@ public class PhoneViewController implements Initializable
     @FXML    private Label rearCamLabel;
     @FXML    private ImageView phoneImageView;
              private String imageLocation;
+             private ToggleGroup osToggleGroup;
 
     /**
      * Initializes the controller class.
@@ -73,7 +75,36 @@ public class PhoneViewController implements Initializable
         
         //the ImageView requires an image object
         phoneImageView.setImage(new Image("file:./src/images/defaultPhone.jpg"));
+        phoneImageView.setPreserveRatio(true);
+        phoneImageView.setSmooth(true);
+        
+        //Configure the front camera slider
+        frontCamSlider.setMin(0);
+        frontCamSlider.setMax(18);
+        frontCamSlider.setValue(12);
+        frontCamSlider.setBlockIncrement(2);
+//        frontCamSlider.setShowTickMarks(true);
+//        frontCamSlider.setShowTickLabels(true);
+        frontCamLabel.setText(Double.toString(frontCamSlider.getValue()));   
+        
+        //Initialize the ToggleGroup, then add the radio buttons to it
+        osToggleGroup = new ToggleGroup();
+        iOSRadioButton.setToggleGroup(osToggleGroup);
+        androidRadioButton.setToggleGroup(osToggleGroup);
+        windowsRadioButton.setToggleGroup(osToggleGroup);
+        iOSRadioButton.setSelected(true);
+        
+        this.getOS();
     }    
+    
+    /**
+     * This will update the front camera label when the
+     * slider is dragged with the mouse
+     */
+    public void frontCameraSliderDragged()
+    {
+        frontCamLabel.setText(String.format("%2.1f",frontCamSlider.getValue()));
+    }
     
     
     /**
@@ -119,5 +150,40 @@ public class PhoneViewController implements Initializable
                 imageLocation = tmpImageFile.getPath();
             }
         }
+    }
+    
+    /**
+     * This method will instantiate a phone object when the button is pushed
+     */
+    public void createButtonPushed()
+    {
+        try
+        {
+            Phone phone = new Phone(this.yearSpinner.getValue(), 
+                                    this.colourComboBox.getValue(), 
+                                    "A11 bionic",  //hard coded for now 
+                                    this.getOS(), 
+                                    this.frontCamSlider.getValue(), 
+                                    14,             //hard coded, you build the code 
+                                    this.skuTextField.getText(), 
+                                    this.modelTextField.getText(), 
+                                    this.manfacturerComboBox.getValue(), 
+                                    this.quantitySpinner.getValue(), 
+                                    Double.parseDouble(this.priceTextField.getText()));
+        }
+        catch (IllegalArgumentException e)
+        {
+            
+        }
+                
+    }
+    
+    /**
+     * This method will return the String representation
+     * of the operating system defined in the toggle group
+     */
+    public String getOS()
+    {       
+        return ((RadioButton) osToggleGroup.getSelectedToggle()).getText();
     }
 }
