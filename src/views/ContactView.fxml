@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="views.ContactViewController">
+    <stylesheets>
+        <URL value="@product.css" />
+    </stylesheets>
+   <children>
+      <TableView fx:id="contactTableView" layoutX="44.0" layoutY="52.0" prefHeight="200.0" prefWidth="484.0">
+        <columns>
+          <TableColumn fx:id="contactIDColumn" prefWidth="83.0" text="Contact ID" />
+          <TableColumn fx:id="firstNameColumn" maxWidth="200.0" minWidth="100.0" prefWidth="200.0" text="First Name" />
+            <TableColumn fx:id="lastNameColumn" maxWidth="200.0" minWidth="100.0" prefWidth="200.0" text="Last Name" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

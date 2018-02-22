@@ -14,6 +14,13 @@ public class Contact
     private int contactID;
     private String firstName, lastName;
 
+    public Contact(int contactID, String firstName, String lastName)
+    {
+        this.contactID = contactID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public Contact(String firstName, String lastName)
     {
         this.firstName = firstName;
@@ -58,6 +65,36 @@ public class Contact
             if (conn != null)
                 conn.close();
         }
+    }
+
+    public int getContactID()
+    {
+        return contactID;
+    }
+
+    public void setContactID(int contactID)
+    {
+        this.contactID = contactID;
+    }
+
+    public String getFirstName()
+    {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName)
+    {
+        this.firstName = firstName;
+    }
+
+    public String getLastName()
+    {
+        return lastName;
+    }
+
+    public void setLastName(String lastName)
+    {
+        this.lastName = lastName;
     }
     
     
