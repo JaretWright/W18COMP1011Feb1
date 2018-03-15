@@ -1,8 +1,9 @@
-
 package views;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -22,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Phone;
+import utilities.FileMove;
 
 /**
  * FXML Controller class
@@ -74,9 +76,11 @@ public class PhoneViewController implements Initializable
         yearSpinner.setValueFactory(yearValueFactory);
         
         //the ImageView requires an image object
-        phoneImageView.setImage(new Image("file:./src/images/defaultPhone.jpg"));
+        imageLocation = "./src/images/defaultPhone.jpg";
+        phoneImageView.setImage(new Image("file:"+imageLocation));
         phoneImageView.setPreserveRatio(true);
         phoneImageView.setSmooth(true);
+        
         
         //Configure the front camera slider
         frontCamSlider.setMin(0);
@@ -110,7 +114,7 @@ public class PhoneViewController implements Initializable
     /**
      * This method will use a FileChooser to set the Image in the ImageView
      */
-    public void getNewImage(ActionEvent event)
+    public void getNewImage(ActionEvent event) throws IOException
     {
         //get the Stage to open a new window
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -121,10 +125,8 @@ public class PhoneViewController implements Initializable
         
         //Create filters for .jpg and .png
         FileChooser.ExtensionFilter jpgFilter = 
-                   new FileChooser.ExtensionFilter("Image File (*.jpg)", "*.jpg");
-        FileChooser.ExtensionFilter pngFilter = 
-                   new FileChooser.ExtensionFilter("Image File (*.png)", "*.png");
-        fileChooser.getExtensionFilters().addAll(jpgFilter, pngFilter);
+                   new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png");
+        fileChooser.getExtensionFilters().addAll(jpgFilter);
         
         //Set to the user's picture directory or user directory if not available
         String userDirectoryString = System.getProperty("user.home")+"\\Pictures";
@@ -145,17 +147,16 @@ public class PhoneViewController implements Initializable
             //update the ImageView with the new image
             if (tmpImageFile.isFile())
             {
+                imageLocation=tmpImageFile.getPath();
                 phoneImageView.setImage(new Image("file:"+tmpImageFile.getPath()));
-                
-                imageLocation = tmpImageFile.getPath();
-            }
+            };
         }
     }
     
     /**
      * This method will instantiate a phone object when the button is pushed
      */
-    public void createButtonPushed()
+    public void createButtonPushed() throws IOException
     {
         try
         {
@@ -170,10 +171,20 @@ public class PhoneViewController implements Initializable
                                     this.manfacturerComboBox.getValue(), 
                                     this.quantitySpinner.getValue(), 
                                     Double.parseDouble(this.priceTextField.getText()));
+            
+            //If the Phone object was created and it is not using the default image, move the image file to the images
+            //directory and update the image
+            if (!imageLocation.equals("./src/images/defaultPhone.jpg"))
+            {
+                File newFile = FileMove.copyFileToImagesDirectory(new File(imageLocation));
+                phone.setImageLocation(newFile.getPath());
+                phoneImageView.setImage(new Image("file:"+phone.getImageLocation()));
+                
+            }      
         }
         catch (IllegalArgumentException e)
         {
-            
+            System.err.println(e);
         }
                 
     }
@@ -185,5 +196,11 @@ public class PhoneViewController implements Initializable
     public String getOS()
     {       
         return ((RadioButton) osToggleGroup.getSelectedToggle()).getText();
+    }
+    
+    
+    public void backButtonPushed(ActionEvent event) throws IOException
+    {
+        SceneChanger.changeScene(event, "ContactView.fxml", "Contacts");
     }
 }

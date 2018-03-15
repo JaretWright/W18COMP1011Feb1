@@ -1,5 +1,11 @@
 package models;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
 /**
  *
  * @author JWright
@@ -8,6 +14,7 @@ public class Product {
     private String sku, productName, manufacturer;
     private int quantityInStock;
     private double price;
+    private String imageLocation;
     
 
     public Product(String sku, String productName, String manufacturer, int quantityInStock, double price) {
@@ -16,8 +23,22 @@ public class Product {
         setManufacturer(manufacturer);
         setQuantityInStock(quantityInStock);
         setPrice(price);
+        imageLocation = "./src/images/defaultPhone.jpg";
     }
 
+    
+    public String getImageLocation()
+    {
+        return imageLocation;
+    }
+
+    public void setImageLocation(String imageLocation)
+    {
+        this.imageLocation = imageLocation;
+    }
+
+    
+    
     public String getManufacturer() {
         return manufacturer;
     }

@@ -99,7 +99,12 @@
                   </VBox>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" onAction="#createButtonPushed" text="Create Phone" />
+            <HBox alignment="BOTTOM_RIGHT" spacing="20.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#createButtonPushed" text="Create Phone" />
+                  <Button mnemonicParsing="false" onAction="#backButtonPushed" text="Back to Contact View" />
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
